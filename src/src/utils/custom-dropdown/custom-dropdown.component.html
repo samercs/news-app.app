@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar (click)="closeKeyboard()" color="primary">
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="exit()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+        <ion-searchbar #searchbar [debounce]="0" [placeholder]="placeholder" (ionInput)="filterAvailableOptions($event)"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!-- Use a virtual scroll to show the items  -->
+    <ion-list *ngIf="useVirtualScroll" [virtualScroll]="options" virtualTrackBy="identifyOption" approxItemHeight="60px" approxHeaderHeight="160px"
+        approxFooterHeight="0px" bufferRatio="5">
+        <ion-item *virtualItem="let option" text-wrap class="option-item" [class.no-icons]="!showIcons" (click)="selectOption(option)">
+            <ion-avatar *ngIf="showIcons" item-left>
+                <i class="flag flag-{{option.key | lowercase }}"></i>
+            </ion-avatar>
+            {{ option.value }}
+        </ion-item>
+    </ion-list>
+
+    <!-- Don't use a virtual scroll to show the items, load items per page by using a infinite scroll  -->
+    <ion-list *ngIf="!useVirtualScroll">
+        <ion-item text-wrap class="option-item" [class.no-icons]="!showIcons" (click)="selectOption(option)" *ngFor="let option of visibleOptions; trackBy:identifyOption">
+            <ion-avatar *ngIf="showIcons" item-left>
+                <i class="flag flag-{{option.key | lowercase }}"></i>
+            </ion-avatar>
+            {{ option.value }}
+        </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll *ngIf="!useVirtualScroll" threshold="100px" (ionInfinite)="loadMoreOptions($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Ticket Scanner</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list no-lines no-margin>
+        <!-- Project and Meal -->
+        <ion-item class="form-input">
+            <div class="custom-input" item-content>
+                <p>{{ project?.name }} - {{ meal?.value | uppercase }}</p>                
+                <ion-icon class="edit-icon" (click)="showOptions($event)" item-right name="md-more"></ion-icon>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-list no-lines no-margin>
+        <!-- Bar code -->
+        <ion-item no-border class="form-input">
+            <div [class.empty]="status === emptyStatus" [class.valid]="status === validStatus" [class.invalid]="status === invalidStatus"
+                class="barcode custom-input" item-content>
+                <i *ngIf="status === emptyStatus" class="barcode-icon fa fa-barcode" aria-hidden="true"></i>
+                <i *ngIf="status === invalidStatus" class="barcode-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
+                <i *ngIf="status === validStatus" class="barcode-icon fa fa-check-square-o" aria-hidden="true"></i>
+                <ion-input [readonly]="status === validStatus || status ===  invalidStatus" #barcodeInput type="number" [(ngModel)]="barcode" (input)="barcodeChange()"></ion-input>
+            </div>
+        </ion-item>
+    </ion-list>    
+
+    <ion-grid class="total-grid" no-margin>
+        <ion-row>
+            <ion-col width-25>
+                Breakfast
+            </ion-col>
+            <ion-col>
+                <span *ngIf="maxCountInfo" [style.width.%]="countInfo.b * 100 / maxCountInfo" class="horizontal-graph"></span>
+            </ion-col>
+            <ion-col class="total" width-10>
+                {{ countInfo.b }}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-25>
+                Lunch
+            </ion-col>
+            <ion-col>
+                <span *ngIf="maxCountInfo" [style.width.%]="countInfo.l * 100 / maxCountInfo" class="horizontal-graph"></span>
+            </ion-col>
+            <ion-col class="total" width-10>
+                {{ countInfo.l }}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-25>
+                Dinner
+            </ion-col>
+            <ion-col>
+                <span *ngIf="maxCountInfo" [style.width.%]="countInfo.d * 100 / maxCountInfo" class="horizontal-graph"></span>
+            </ion-col>
+            <ion-col class="total" width-10>
+                {{ countInfo.d }}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-25>
+                Snack
+            </ion-col>
+            <ion-col>
+                <span *ngIf="maxCountInfo" [style.width.%]="countInfo.s * 100 / maxCountInfo" class="horizontal-graph"></span>
+            </ion-col>
+            <ion-col class="total" width-10>
+                {{ countInfo.s }}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

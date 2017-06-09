@@ -1,0 +1,12 @@
+page-start {
+    @include input-with-color-background('light-grey');
+
+    .select-disabled, 
+    .item-select-disabled ion-label {
+        opacity: 1; 
+    }
+
+    button.main-button {
+        margin-top: 48px;
+    }
+}

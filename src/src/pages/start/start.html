@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar color="primary">
+         <ion-buttons *ngIf="changeBackButtonBehaviour" left>
+            <button (click)="handleBackButton()" ion-button icon-only>
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Select Project</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list no-lines no-margin>
+
+        <!-- Project -->
+        <ion-item (click)="showProjectDropdown()" class="form-input">
+            <ion-label stacked>Project</ion-label>
+            <ion-select disabled [(ngModel)]="selectedProject">
+                <ion-option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- PIN -->
+        <ion-item class="form-input">
+            <ion-label stacked>PIN</ion-label>
+            <ion-input [(ngModel)]="projectPin" type="number"></ion-input>
+        </ion-item>
+
+        <!-- Continue button-->
+        <button class="main-button" ion-button block (click)="saveProject()">Continue</button>
+
+    </ion-list>
+</ion-content>

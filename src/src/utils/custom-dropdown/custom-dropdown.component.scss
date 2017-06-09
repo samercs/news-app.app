@@ -1,0 +1,37 @@
+custom-dropdown {
+
+    ion-item.option-item.item-ios,
+    ion-item.option-item.item-md,
+    ion-item.option-item.item-wp {
+        height: 60px;
+    }
+
+    ion-item.option-item.item-ios ion-label,
+    ion-item.option-item.item-md ion-label,
+    ion-item.option-item.item-wp ion-label {
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    }
+
+    ion-item.option-item.no-icons.item-ios ion-label,
+    ion-item.option-item.no-icons.item-md ion-label,
+    ion-item.option-item.no-icons.item-wp ion-label {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    ion-item.option-item.item-ios ion-avatar[item-left],
+    ion-item.option-item.item-md ion-avatar[item-left],
+    ion-item.option-item.item-wp ion-avatar[item-left]  {
+        position: absolute;
+        margin:0;
+        min-width: 0 !important;
+        min-height: 0 !important;
+
+        // Fixes issues in old android devices where flex doesn't work properly
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    } 
+}

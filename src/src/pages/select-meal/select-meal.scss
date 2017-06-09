@@ -1,0 +1,7 @@
+page-select-meal {
+    @include input-with-color-background('light-grey');
+
+    button.main-button {
+        margin-top: 48px;
+    }
+}
