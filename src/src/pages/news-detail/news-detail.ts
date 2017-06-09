@@ -30,7 +30,7 @@ export class NewsDetailPage extends BasePage {
 	}
 
 	public share() {
-		let message = `${this.news.title} \n\n ${this.news.prev}`;
+		let message = `${this.news.title}`;
 		this.helpers.showLoadingMessage().then(() => {
 			var options = {
 				message: message, // not supported on some apps (Facebook, Instagram)

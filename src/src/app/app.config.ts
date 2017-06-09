@@ -48,7 +48,7 @@ export const APP_CONFIG: AppConfig = {
 
     apiUrlLocal:        'http://localhost:2240/api',
     apiUrlStaging:      'http://localhost:62506/api',
-    apiUrlProduction:   'http://localhost:62506/api',
-    tokenApiUrl: 'http://localhost:2240/api/token'
+    apiUrlProduction:   'http://jordanian-news.azurewebsites.net/api',
+    tokenApiUrl: 'http://jordanian-news.azurewebsites.net/api/token'
 
 };

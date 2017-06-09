@@ -56,7 +56,6 @@ export class MyApp {
 
 		this.pages = [
 			{ title: 'الاخبار', component: StartPage },
-			{ title: 'المفضلة', component: FavoritePage },
 			{ title: 'عن التطبيق', component: AboutPage },
 			{ title: 'البحث', component: SearchPage },
 			{ title: 'اتصل بنا', component: ContactPage },
@@ -172,5 +171,8 @@ export class MyApp {
 		this.navCtrl.setRoot(RegisterPage);
 	}
 
+	public openFavorite(){
+		this.navCtrl.setRoot(FavoritePage);
+	}
 	
 }

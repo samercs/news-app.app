@@ -14,9 +14,11 @@
                 تسجيل الدخول
             </button>
             <button *ngIf="!isUserLogin" menuClose ion-item (click)="openRegister()">
-                التسجيل
+                مستخدم جديد
             </button>
-
+            <button *ngIf="isUserLogin" menuClose ion-item (click)="openFavorite()">
+                المفضلة
+            </button>
             <button *ngIf="isUserLogin" menuClose ion-item (click)="logOff()">
                 خروج
             </button>

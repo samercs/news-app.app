@@ -51,7 +51,7 @@ export class HelperServices {
             this.hideLoadingMessage();
         }
 
-        let loadingText = 'Loading ...';
+        let loadingText = 'تحميل ...';
 
         this._currentLoadingInstance = this._ionic.loadingCtrl.create({
             content: loadingText

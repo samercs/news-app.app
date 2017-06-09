@@ -1,11 +1,16 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>Register</ion-title>
+        <button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button> 
+        <ion-title>مستخدم جديد</ion-title>
+        
     </ion-navbar>
 </ion-header>
 
 <ion-content>
 
+    
     <form (ngSubmit)="register()" [formGroup]="registerForm">
 
         <ion-row class="form-container">
@@ -14,35 +19,35 @@
 
                     <!-- First Name -->
                     <ion-item [@firstNameFieldFadeIn]="firstNameFieldState" class="form-input">
-                        <ion-label color="placeholder" floating>First Name</ion-label>
+                        <ion-label color="placeholder" floating>الاسم الاول</ion-label>
                         <ion-input formControlName="firstName" type="text"></ion-input>
                     </ion-item>
                     <!--<error-message [submitted]="submitAttempt" [name]="first name" [control]="registerForm.get('firstName')"></error-message>-->
 
                     <!-- Last Name -->
                     <ion-item [@lastNameFieldFadeIn]="lastNameFieldState" class="form-input">
-                        <ion-label color="placeholder" floating>Last Name</ion-label>
+                        <ion-label color="placeholder" floating>العائلة</ion-label>
                         <ion-input formControlName="lastName" type="text"></ion-input>
                     </ion-item>
                     <!--<error-message [submitted]="submitAttempt" [name]="last name" [control]="registerForm.get('lastName')"></error-message>-->
 
                     <!-- Email -->
                     <ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
-                        <ion-label color="placeholder" floating>Email</ion-label>
+                        <ion-label color="placeholder" floating>البريد الالكتروني</ion-label>
                         <ion-input formControlName="email" type="email"></ion-input>
                     </ion-item>
                     <!--<error-message [submitted]="submitAttempt" [name]="'FIELDS.EMAIL' | translate | lowercase" [control]="registerForm.get('email')"></error-message>-->
 
                     <!-- Password -->
                     <ion-item [@passwordFieldFadeIn]="passwordFieldState" class="form-input">
-                        <ion-label color="placeholder" floating>Password</ion-label>
+                        <ion-label color="placeholder" floating>كلمة السر</ion-label>
                         <ion-input formControlName="password" type="password"></ion-input>
                     </ion-item>
                     <!--<error-message [submitted]="submitAttempt" [name]="'FIELDS.PASSWORD' | translate | lowercase" [control]="registerForm.get('password')"></error-message>-->
 
                     <!-- Password Confirmation -->
                     <ion-item [@confirmPasswordFieldFadeIn]="confirmPasswordFieldState" class="form-input">
-                        <ion-label color="placeholder" floating>Confirm Password</ion-label>
+                        <ion-label color="placeholder" floating>تأكيد كلمة السر</ion-label>
                         <ion-input formControlName="confirmPassword" type="password"></ion-input>
                     </ion-item>
 
@@ -65,6 +70,6 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-        <button [@registerButonFadeInUp]="registerButonState" (click)="register()" color="primary" ion-button full>Register</button>
+        <button [@registerButonFadeInUp]="registerButonState" (click)="register()" color="primary" ion-button full>التسجيل</button>
     </ion-toolbar>
 </ion-footer>

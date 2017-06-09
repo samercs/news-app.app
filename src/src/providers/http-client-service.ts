@@ -24,7 +24,7 @@ export class HttpClientService {
         this.apiKey = config.apiKey
 
         // Change the next line of code to use the local/staging/production api url
-        this.apiUrl = config.apiUrlLocal;
+        this.apiUrl = config.apiUrlProduction;
         this.tokenApiUrl = config.tokenApiUrl;
     }
 

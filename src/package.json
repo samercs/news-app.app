@@ -1,7 +1,7 @@
 {
-    "name": "ionic-hello-world",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "name": "jordanian news",
+    "author": "jordanian news",
+    "homepage": "http://jordanian-news.azurewebsites.net/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",

@@ -42,7 +42,7 @@ class NewsListModel {
 export class NewsService {
 
     private newsList: NewsListModel;
-    
+
     constructor(private http: HttpClientService,
         private storage: Storage,
         private accountService: AccountService) {
@@ -58,15 +58,15 @@ export class NewsService {
 
         console.log('Getting projects from server...');
         let token = '';
-        if(this.accountService.isLoggedIn()){
+        if (this.accountService.isLoggedIn()) {
             token = this.accountService.getCurrentToken();
         }
         return this.http.get("news", token).map(res => res.json()).map(data => {
             this.newsList.news = data;
             this.newsList.timestamp = Date.now();
             return this.newsList.news;
-        });       
-    }    
+        });
+    }
 
     public getById(newsId: number): Observable<any> {
         return Observable.create(observable => {
@@ -77,26 +77,35 @@ export class NewsService {
         });
     }
 
-    public addToFavorite(newsId: number): Observable<any>{
+    public addToFavorite(newsId: number): Observable<any> {
         var data = {};
         let token = this.accountService.getCurrentToken();
         return this.http.post(`news/favorite/${newsId}`, data, token).map(res => res.json()).map(data => {
-            
-        });       
+
+        });
     }
 
     public search(query: string): Observable<any> {
-        let token = this.accountService.getCurrentToken();
-        return this.http.get(`news/search/${query}`, token).map(res => res.json()).map(data => {
-            return data;
-        });       
-    }    
 
-    public getUserFavorite(): Observable<any>{
+        
+        if (this.accountService.isLoggedIn()) {
+            let token = this.accountService.getCurrentToken();
+            return this.http.get(`news/search/${query}`, token).map(res => res.json()).map(data => {
+                return data;
+            });
+        }else{
+            return this.http.get(`news/search/${query}`).map(res => res.json()).map(data => {
+                return data;
+            });
+        }
+
+    }
+
+    public getUserFavorite(): Observable<any> {
         let token = this.accountService.getCurrentToken();
         return this.http.get(`news/favorite`, token).map(res => res.json()).map(data => {
             return data;
-        }); 
+        });
     }
 
 

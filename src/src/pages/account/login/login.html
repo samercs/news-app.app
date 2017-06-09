@@ -1,6 +1,9 @@
 <ion-header>
 	<ion-navbar color="primary">
-		<ion-title>Login</ion-title>
+		<ion-title>تسجيل الدخول</ion-title>
+		<button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button> 
 	</ion-navbar>
 </ion-header>
 
@@ -12,27 +15,27 @@
 
 					<!-- Email -->
 					<ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
-						<ion-label color="placeholder" floating>Email</ion-label>
+						<ion-label color="placeholder" floating>البريد الالكتروني</ion-label>
 						<ion-input formControlName="email" type="email" autocorrect="off" autocapitalize="none"></ion-input>
 					</ion-item>
 					<!--<error-message [submitted]="submitAttempt" [name]="'email address'" [control]="signInForm.get('email')"></error-message>-->
 
 					<!-- Password -->
 					<ion-item [@passwordFieldFadeIn]="passwordFieldState" class="form-input">
-						<ion-label color="placeholder" floating>Password</ion-label>
+						<ion-label color="placeholder" floating>كلمة السر</ion-label>
 						<ion-input formControlName="password" type="password"></ion-input>
 					</ion-item>
 					<!--<error-message [submitted]="submitAttempt" [name]="'password'" [control]="signInForm.get('password')"></error-message>-->
 
 					<ion-row>
 						<ion-col>
-							<div class="submit-error error-message" *ngIf="submitError">Submit Error</div>
+							<div class="submit-error error-message" *ngIf="submitError">خطأ في تسجيل الدخول</div>
 						</ion-col>
 					</ion-row>
 
 					<ion-row [@forgotPasswordLinkFadeIn]="forgotPasswordLinkState" class="centered">
 						<ion-col>
-							<span (click)="resetPassword()">Reset Password</span>
+							<span (click)="resetPassword()">تغير كلمة السر</span>
 						</ion-col>
 					</ion-row>
 
@@ -50,6 +53,6 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<button [@loginButtonFadeInUp]="loginButtonState" class="blue-btn" (click)="signIn()" ion-button full>Login</button>
+		<button [@loginButtonFadeInUp]="loginButtonState" class="blue-btn" (click)="signIn()" ion-button full>تسجيل الدخول</button>
 	</ion-toolbar>
 </ion-footer>
