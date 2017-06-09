@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar color="primary">   
+        <button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button>     
+        <ion-title>ابلاغ عن عطل</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (ngSubmit)="signIn()" [formGroup]="signInForm">
+		<ion-row class="form-container">
+			<ion-col>
+				<ion-list inset>
+                    <ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
+						<ion-label color="placeholder" floating>العنوان</ion-label>
+						<ion-input formControlName="title" type="text" autocorrect="off" autocapitalize="none"></ion-input>
+					</ion-item>
+					<ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
+						<ion-label color="placeholder" floating>المشكلة</ion-label>
+						<ion-textarea style="height: 100px;" formControlName="description" type="text" autocorrect="off" autocapitalize="none"></ion-textarea>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<!-- 
+			Hidden button to make the GO button submit the form, 
+			since the button is in the footer (outside the form tag) 
+		-->
+		<button id="hidden-btn" type="submit"></button>
+
+	</form>
+
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<button [@loginButtonFadeInUp]="loginButtonState" class="blue-btn" (click)="submit()" ion-button full>Submit</button>
+	</ion-toolbar>
+</ion-footer>

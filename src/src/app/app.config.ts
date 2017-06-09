@@ -26,26 +26,29 @@ export interface AppConfig {
     apiUrlLocal: string;
     apiUrlStaging: string;
     apiUrlProduction: string;
+    tokenApiUrl: string;
 }
 
 // Application Config object
 export const APP_CONFIG: AppConfig = {
 
     // Application name
-    appName: 'TEMPLATE',
+    appName: 'NewsApp',
 
     // Application mode
     testMode: true,
 
     // Localization
-    defaultLanguage:    'en',
+    defaultLanguage:    'ar',
     availableLanguages: ['en', 'ar'],
 
     // HTTP Client
     timeout:    50000,
     apiKey:     'UY0l7NgHenpPInEGxOKH',
 
-    apiUrlLocal:        'http://localhost:62506/api',
-    apiUrlStaging:      'https://alghanimcateringportal-staging.azurewebsites.net/api',
-    apiUrlProduction:   'https://alghanimcateringportal.azurewebsites.net/api'
+    apiUrlLocal:        'http://localhost:2240/api',
+    apiUrlStaging:      'http://localhost:62506/api',
+    apiUrlProduction:   'http://localhost:62506/api',
+    tokenApiUrl: 'http://localhost:2240/api/token'
+
 };

@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar color="primary">   
+        <button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button>     
+        <ion-title>عن التطبيق</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h1 class="title">
+        {{aboutPageModel.title}}
+    </h1>
+    <p class="description" [innerHtml]="aboutPageModel.description">
+    </p>
+
+</ion-content>

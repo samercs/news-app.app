@@ -1,0 +1,97 @@
+.virtual-tiles {
+    margin: 0 -3px;
+
+    > .item {
+        padding: 0;
+
+        .item-inner {
+            padding: 0;
+            border: none;
+        }
+
+        &:first-child {
+            border: none;
+        }
+
+        ion-label {
+            margin: 0;
+        }
+
+        ion-col {
+            padding: 0 3px 6px 3px;
+        }
+    }
+}
+
+
+.grid-list {
+    margin: 0 -3px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    align-items: flex-start;
+
+    .grid-tile {
+        display: flex;
+        flex: 0 0 50%;
+        box-sizing: border-box;
+       
+        button {
+            padding: 0 3px 6px 3px;
+            
+            label {
+                display: block;
+                position: absolute;
+                left: 12px;
+                right: 12px;
+                bottom: 24px;
+                padding: 4px 0;
+                text-align: center;
+                text-transform: uppercase;
+                color: white;
+                border-bottom: 4px solid white;
+                white-space: normal;
+            }
+            
+            img {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+    
+    .grid-image {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    
+    .item-inner {
+        border: none !important;
+    
+        &, ion-label {  
+            margin: 0 !important;
+            padding: 0 !important;
+            background: none !important;
+        }
+    }
+}
+
+.grid-list-3 .grid-tile {
+  flex-basis: percentage(1/2);  
+  width: percentage(1/2);
+}
+
+.grid-list-3 .grid-tile {
+  flex-basis: percentage(1/3);  
+  width: percentage(1/3);
+}
+
+.grid-list-4 .grid-tile {
+  flex-basis: percentage(1/4);  
+  width: percentage(1/4);
+}

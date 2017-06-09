@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="primary">   
+        <button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button>     
+        <ion-title>الاخبار المفضله</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngIf="news">
+        <ion-item *ngFor="let item of news"  >
+                <img class="img" [src]="item.img" [style.width]="imageSize" [style.height]="imageSize" (click)="goToNews(item)">
+                <h2 class="title" (click)="goToNews(item)">
+                    {{item.title}}
+                </h2>
+                <button class="blue-btn" (click)="removeFromFavorite(item.id)" ion-button full>Remove</button>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

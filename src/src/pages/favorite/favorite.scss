@@ -1,4 +1,8 @@
-page-start {
+page-favorite {
+    .img{
+        width: 100%;
+        margin-bottom: 20px;
+    }
     .img{
         width: 100%;
         margin-bottom: 20px;
@@ -6,5 +10,8 @@ page-start {
     .title{
         text-align: center;
         font-weight: bold;
+    }
+    .description{
+        text-align: right;
     }
 }

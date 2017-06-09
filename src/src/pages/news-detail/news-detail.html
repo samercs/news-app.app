@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons *ngIf="changeBackButtonBehaviour" left>
+            <button (click)="handleBackButton()" ion-button icon-only>
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>الاخبار</ion-title>
+        <ion-buttons end>
+            <button ion-button primary (click)="share()">
+                <ion-icon class="smaller-icon" name="share"></ion-icon>
+            </button>
+            <button *ngIf="isLogin" ion-button primary class="add-button" (click)="addToFavarites()">
+                <ion-icon *ngIf="!news.isFavorite" class="smaller-icon" name="ios-heart-outline" ></ion-icon>
+                <ion-icon *ngIf="news.isFavorite" class="smaller-icon" name="ios-heart" ></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <img src="{{news.img}}">
+        </ion-item>
+        <ion-item>
+            <h2 class="title">
+                {{news.title}}
+            </h2>
+            <p class="detail" [innerHtml]="news.prev">
+                
+            </p>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -13,9 +13,14 @@ import { BasePage } from '../core/pages/base';
 
 // Pages
 import { StartPage } from '../pages/start/start';
-import { ScanPage } from '../pages/scan/scan';
-import { PopoverPage } from '../pages/scan/edit-popover/edit-popover';
-import { SelectMealPage } from '../pages/select-meal/select-meal';
+import { NewsDetailPage } from '../pages/news-detail/news-detail';
+import { LogInPage } from '../pages/account/login/login';
+import { RegisterPage } from '../pages/account/register/register';
+import { AboutPage } from '../pages/about/about';
+import { SearchPage } from '../pages/search/search';
+import { ContactPage } from '../pages/contact/contact';
+import { IssuePage } from '../pages/issue/issue';
+import { FavoritePage } from '../pages/favorite/favorite';
 
 // Services
 import { HttpClientService } from '../providers/http-client-service';
@@ -24,6 +29,11 @@ import { NetworkService } from '../providers/network-service';
 import { ProjectService } from '../providers/project.services';
 import { MealService } from '../providers/meal.services';
 import { TicketService } from '../providers/ticket.services';
+import { NewsService } from '../providers/news.services';
+import { AccountService } from '../providers/account-services';
+import { PageService } from '../providers/page-services';
+import { ContactService } from '../providers/contact-services';
+import { IssueService } from '../providers/issue-services';
 
 // Config object
 import { TOKEN_CONFIG, APP_CONFIG } from '../app/app.config';
@@ -35,10 +45,14 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		MyApp,
 		BasePage,
 		StartPage,
-		ScanPage,
-		SelectMealPage,
-		PopoverPage,
-
+		NewsDetailPage,		
+		LogInPage,
+		RegisterPage,
+		AboutPage,
+		SearchPage,
+		ContactPage,
+		IssuePage,
+		FavoritePage,
 		// Utils
 		CustomDropdown
 	],
@@ -52,10 +66,14 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		// Pages
 		BasePage,
 		StartPage,
-		ScanPage,
-		SelectMealPage,
-		PopoverPage,
-
+		NewsDetailPage,		
+		LogInPage,
+		RegisterPage,
+		AboutPage,
+		SearchPage,
+		ContactPage,
+		IssuePage,
+		FavoritePage,
 		// Utils
 		CustomDropdown
 	],
@@ -67,6 +85,11 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		ProjectService,
 		MealService,
 		TicketService,
+		NewsService,
+		AccountService,
+		PageService,
+		ContactService,
+		IssueService,
 		{ provide: TOKEN_CONFIG, useValue: APP_CONFIG },
 		{ provide: ErrorHandler, useClass: IonicErrorHandler }
 	]

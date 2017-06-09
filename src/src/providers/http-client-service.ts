@@ -16,6 +16,7 @@ export class HttpClientService {
     private timeout: number;
     private apiKey: string;
     private apiUrl: string;
+    private tokenApiUrl: string;
 
     constructor(@Inject(TOKEN_CONFIG) config: AppConfig,
                 private http: Http) {
@@ -23,7 +24,8 @@ export class HttpClientService {
         this.apiKey = config.apiKey
 
         // Change the next line of code to use the local/staging/production api url
-        this.apiUrl = config.apiUrlStaging;
+        this.apiUrl = config.apiUrlLocal;
+        this.tokenApiUrl = config.tokenApiUrl;
     }
 
     // Method that returns the current api url
@@ -42,9 +44,9 @@ export class HttpClientService {
 
         headers.append('accept-language', 'en')
 
-        if(!excludeKey) {
+        /*if(!excludeKey) {
             headers.append('X-ApiKey', this.apiKey);
-        }
+        }*/
         if (authorizationToken) {
             headers.append('Authorization', `Bearer ${authorizationToken}`);
         }
@@ -58,9 +60,9 @@ export class HttpClientService {
         if (authorizationToken) {
             headers.append('Authorization', `Bearer ${authorizationToken}`);
         }
-        if(!excludeKey) {
+        /*if(!excludeKey) {
             headers.append('X-ApiKey', this.apiKey);
-        }
+        }*/
         return new RequestOptions({ headers: headers });
     }
 
@@ -83,5 +85,12 @@ export class HttpClientService {
         const requestUrl = `${this.apiUrl}/${url}`;
         let options = this.createPostAndPutHeaderOptions(authorizationToken, contentType, excludeKey);
         return this.http.put(requestUrl, data, options).timeout(this.timeout, new Error('Timeout exceeded'));
+    }
+
+    // Base post to token url method
+    public postToTokenUrl(data: any): Observable<any> {
+        let contentType = 'application/x-www-form-urlencoded',
+            options = this.createPostAndPutHeaderOptions('', contentType, false);
+        return this.http.post(this.tokenApiUrl, data, options).timeout(this.timeout, new Error('Timeout exceeded'));
     }
 }

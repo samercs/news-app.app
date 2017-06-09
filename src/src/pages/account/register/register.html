@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Register</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <form (ngSubmit)="register()" [formGroup]="registerForm">
+
+        <ion-row class="form-container">
+            <ion-col>
+                <ion-list inset>
+
+                    <!-- First Name -->
+                    <ion-item [@firstNameFieldFadeIn]="firstNameFieldState" class="form-input">
+                        <ion-label color="placeholder" floating>First Name</ion-label>
+                        <ion-input formControlName="firstName" type="text"></ion-input>
+                    </ion-item>
+                    <!--<error-message [submitted]="submitAttempt" [name]="first name" [control]="registerForm.get('firstName')"></error-message>-->
+
+                    <!-- Last Name -->
+                    <ion-item [@lastNameFieldFadeIn]="lastNameFieldState" class="form-input">
+                        <ion-label color="placeholder" floating>Last Name</ion-label>
+                        <ion-input formControlName="lastName" type="text"></ion-input>
+                    </ion-item>
+                    <!--<error-message [submitted]="submitAttempt" [name]="last name" [control]="registerForm.get('lastName')"></error-message>-->
+
+                    <!-- Email -->
+                    <ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
+                        <ion-label color="placeholder" floating>Email</ion-label>
+                        <ion-input formControlName="email" type="email"></ion-input>
+                    </ion-item>
+                    <!--<error-message [submitted]="submitAttempt" [name]="'FIELDS.EMAIL' | translate | lowercase" [control]="registerForm.get('email')"></error-message>-->
+
+                    <!-- Password -->
+                    <ion-item [@passwordFieldFadeIn]="passwordFieldState" class="form-input">
+                        <ion-label color="placeholder" floating>Password</ion-label>
+                        <ion-input formControlName="password" type="password"></ion-input>
+                    </ion-item>
+                    <!--<error-message [submitted]="submitAttempt" [name]="'FIELDS.PASSWORD' | translate | lowercase" [control]="registerForm.get('password')"></error-message>-->
+
+                    <!-- Password Confirmation -->
+                    <ion-item [@confirmPasswordFieldFadeIn]="confirmPasswordFieldState" class="form-input">
+                        <ion-label color="placeholder" floating>Confirm Password</ion-label>
+                        <ion-input formControlName="confirmPassword" type="password"></ion-input>
+                    </ion-item>
+
+                    <!-- 
+                        The password confirmation field does not have a error-message element but a form-error-message. This is because 
+                        its validation depends on the password field, so it's a form validation instead of a single field validation. 
+                    -->
+<!--                    <form-error-message [submitted]="submitAttempt" [form]="registerForm" [control]="registerForm.get('confirmPassword')"></form-error-message>-->
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <!-- 
+			Hidden button to make the GO button submit the form, 
+			since the button is in the footer (outside the form tag) 
+		-->
+		<button id="hidden-btn" type="submit"></button>
+
+    </form>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button [@registerButonFadeInUp]="registerButonState" (click)="register()" color="primary" ion-button full>Register</button>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,55 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>Login</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="vertical-center">
+	<form (ngSubmit)="signIn()" [formGroup]="signInForm">
+		<ion-row class="form-container">
+			<ion-col>
+				<ion-list inset>
+
+					<!-- Email -->
+					<ion-item [@emailFieldFadeIn]="emailFieldState" class="form-input">
+						<ion-label color="placeholder" floating>Email</ion-label>
+						<ion-input formControlName="email" type="email" autocorrect="off" autocapitalize="none"></ion-input>
+					</ion-item>
+					<!--<error-message [submitted]="submitAttempt" [name]="'email address'" [control]="signInForm.get('email')"></error-message>-->
+
+					<!-- Password -->
+					<ion-item [@passwordFieldFadeIn]="passwordFieldState" class="form-input">
+						<ion-label color="placeholder" floating>Password</ion-label>
+						<ion-input formControlName="password" type="password"></ion-input>
+					</ion-item>
+					<!--<error-message [submitted]="submitAttempt" [name]="'password'" [control]="signInForm.get('password')"></error-message>-->
+
+					<ion-row>
+						<ion-col>
+							<div class="submit-error error-message" *ngIf="submitError">Submit Error</div>
+						</ion-col>
+					</ion-row>
+
+					<ion-row [@forgotPasswordLinkFadeIn]="forgotPasswordLinkState" class="centered">
+						<ion-col>
+							<span (click)="resetPassword()">Reset Password</span>
+						</ion-col>
+					</ion-row>
+
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<!-- 
+			Hidden button to make the GO button submit the form, 
+			since the button is in the footer (outside the form tag) 
+		-->
+		<button id="hidden-btn" type="submit"></button>
+
+	</form>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<button [@loginButtonFadeInUp]="loginButtonState" class="blue-btn" (click)="signIn()" ion-button full>Login</button>
+	</ion-toolbar>
+</ion-footer>

@@ -13,11 +13,20 @@ import { NetworkService } from '../providers/network-service';
 import { ProjectService } from '../providers/project.services';
 import { MealService } from '../providers/meal.services';
 import { TicketService } from '../providers/ticket.services';
+import { AccountService } from '../providers/account-services';
+
 
 // Pages
 import { StartPage } from '../pages/start/start';
-import { SelectMealPage } from '../pages/select-meal/select-meal';
-import { ScanPage } from '../pages/scan/scan';
+import { LogInPage } from '../pages/account/login/login';
+import { RegisterPage } from '../pages/account/register/register';
+import { AboutPage } from '../pages/about/about';
+import { SearchPage } from '../pages/search/search';
+import { ContactPage } from '../pages/contact/contact';
+import { IssuePage } from '../pages/issue/issue';
+import { FavoritePage } from '../pages/favorite/favorite';
+
+
 
 // Config object
 import { TOKEN_CONFIG, AppConfig } from '../app/app.config';
@@ -29,18 +38,30 @@ export class MyApp {
 	@ViewChild(Nav) navCtrl: Nav;
 	private toastInstance: any;
 	public rootPage;
+	public pages: Array<{ title: string, component: any }>
+	public isUserLogin: boolean = false;
 
 	constructor(public platform: Platform,
-				private modalCtrl: ModalController,
-				private eventCtrl: Events,
-				private toastCtrl: ToastController,
-				private networkService: NetworkService,
-				private eventService: EventService,
-				private projectService: ProjectService,
-				private mealService: MealService,
-				private ticketService: TicketService,
-				@Inject(TOKEN_CONFIG) config: AppConfig) {
+		private modalCtrl: ModalController,
+		private eventCtrl: Events,
+		private toastCtrl: ToastController,
+		private networkService: NetworkService,
+		private eventService: EventService,
+		private projectService: ProjectService,
+		private mealService: MealService,
+		private ticketService: TicketService,
+		private accountService: AccountService,
+		@Inject(TOKEN_CONFIG) config: AppConfig) {
 		this.initializeApp();
+
+		this.pages = [
+			{ title: 'الاخبار', component: StartPage },
+			{ title: 'المفضلة', component: FavoritePage },
+			{ title: 'عن التطبيق', component: AboutPage },
+			{ title: 'البحث', component: SearchPage },
+			{ title: 'اتصل بنا', component: ContactPage },
+			{ title: 'الابلاغ عن مشكلة', component: IssuePage }
+		];
 	}
 
 	// Method that subscribes to the navigation related events and initializes the app
@@ -56,34 +77,18 @@ export class MyApp {
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
 			NativeAudio.preloadSimple('error', 'assets/audio/error.mp3')
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
+			
 		});
 	}
 
 	private initializeStartPage() {
-		this.projectService.getCurrentProject().subscribe(project => {
-			if (!project) {
-				this.rootPage = StartPage;
-				return;
-			} else {
-				this.mealService.getCurrentMeal().subscribe(meal => {
-					if (!meal) {
-						this.rootPage = SelectMealPage;
-						return;
-					} else {
-						this.rootPage = ScanPage;
-						return;
-					}
-				}, error => {
-					this.rootPage = SelectMealPage;
-				});
-			}
-		}, error => {
-			this.rootPage = StartPage;
-		});
+		this.rootPage = StartPage;
 	}
 
 	// Method that subscribes to all the events in the app
 	private initializeEvents(): void {
+
+		this.accountService.initializeAccountStatus().then((loggedIn) => { this.isUserLogin = loggedIn });
 
 		// Initialize network events
 		this.networkService.initializeNetworkEvents();
@@ -106,6 +111,11 @@ export class MyApp {
 			}, err => {
 				this.showToastMessage('Unable to sync your data. Sync with server faild.', 'offline');
 			});
+		});
+
+		// Handle what to do when the user needs to be redirected to any page of the app
+		this.eventCtrl.subscribe(this.eventService.UserLoginStatusChanged, (loginChange) => {
+			this.isUserLogin = loginChange;
 		});
 	}
 
@@ -144,4 +154,23 @@ export class MyApp {
 
 		this.toastInstance.present();
 	}
+
+	public openPage(page) {
+		this.navCtrl.setRoot(page.component);
+	}
+
+	public openLogin() {
+		this.navCtrl.setRoot(LogInPage);
+	}
+
+	public logOff(){
+		this.accountService.logOut();
+		this.navCtrl.setRoot(StartPage);
+	}
+
+	public openRegister(){
+		this.navCtrl.setRoot(RegisterPage);
+	}
+
+	
 }

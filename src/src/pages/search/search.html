@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+     		<ion-icon name="menu"></ion-icon>
+    	</button>
+        <ion-title>البحث</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (submit)="submitSearch()">
+        <ion-list id="search-form">
+            <ion-item>
+                <input name="search" type="text" [placeholder]="searchTxtPlaceHolder" [(ngModel)]="search" />
+                <ion-icon name="search" item-right (click)="submitSearch()"></ion-icon>
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+            </ion-item>
+        </ion-list>
+    </form>
+
+    <ion-list *ngIf="news">
+        <button *ngFor="let item of news" ion-item (click)="goToNews(item)">
+                <img class="img" [src]="item.img" [style.width]="imageSize" [style.height]="imageSize">
+                <h2 class=title>
+                    {{item.title}}
+                </h2>
+        </button>
+    </ion-list>
+
+</ion-content>
