@@ -1,13 +1,16 @@
 <ion-header>
-    <ion-navbar color="primary">   
+    <ion-navbar color="primary">
         <button ion-button menuToggle>
      		<ion-icon name="menu"></ion-icon>
-    	</button>     
+    	</button>
         <ion-title>قائمة الاخبار</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <ion-list>
         <ion-item *ngFor="let data of news" (click)="newsDetail(data)">
             <img src="{{data.img}}" class="img">

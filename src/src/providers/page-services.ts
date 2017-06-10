@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../providers/http-client-service';
 import { Observable } from 'rxjs/Observable';
-import { Storage } from '@ionic/storage';
 
 export class PageModel {
     pageId: number;

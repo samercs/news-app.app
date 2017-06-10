@@ -14,6 +14,7 @@ import { ProjectService } from '../providers/project.services';
 import { MealService } from '../providers/meal.services';
 import { TicketService } from '../providers/ticket.services';
 import { AccountService } from '../providers/account-services';
+import { PushNotificationService } from '../providers/push-notification-service';
 
 
 // Pages
@@ -26,13 +27,14 @@ import { ContactPage } from '../pages/contact/contact';
 import { IssuePage } from '../pages/issue/issue';
 import { FavoritePage } from '../pages/favorite/favorite';
 
-
-
 // Config object
 import { TOKEN_CONFIG, AppConfig } from '../app/app.config';
 
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+
 @Component({
-	templateUrl: 'app.html'
+	templateUrl: 'app.html',
+	providers: [Push]
 })
 export class MyApp {
 	@ViewChild(Nav) navCtrl: Nav;
@@ -40,6 +42,7 @@ export class MyApp {
 	public rootPage;
 	public pages: Array<{ title: string, component: any }>
 	public isUserLogin: boolean = false;
+	public isRegisterToPushNotification: boolean;
 
 	constructor(public platform: Platform,
 		private modalCtrl: ModalController,
@@ -51,6 +54,8 @@ export class MyApp {
 		private mealService: MealService,
 		private ticketService: TicketService,
 		private accountService: AccountService,
+		private pushNotificationService: PushNotificationService,
+		private push: Push,
 		@Inject(TOKEN_CONFIG) config: AppConfig) {
 		this.initializeApp();
 
@@ -70,13 +75,14 @@ export class MyApp {
 			Splashscreen.hide();
 			this.initializeEvents();
 			this.initializeStartPage();
+			this.registerPushNotification();
 
 			// Load both audio files
 			NativeAudio.preloadSimple('success', 'assets/audio/success.mp3')
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
 			NativeAudio.preloadSimple('error', 'assets/audio/error.mp3')
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
-			
+
 		});
 	}
 
@@ -162,17 +168,49 @@ export class MyApp {
 		this.navCtrl.setRoot(LogInPage);
 	}
 
-	public logOff(){
+	public logOff() {
 		this.accountService.logOut();
 		this.navCtrl.setRoot(StartPage);
 	}
 
-	public openRegister(){
+	public openRegister() {
 		this.navCtrl.setRoot(RegisterPage);
 	}
 
-	public openFavorite(){
+	public openFavorite() {
 		this.navCtrl.setRoot(FavoritePage);
 	}
-	
+
+	public registerPushNotification() {
+		const options: PushOptions = {
+			android: {
+				senderID: '273373967351'
+			},
+			ios: {
+				alert: 'true',
+				badge: true,
+				sound: 'false'
+			},
+			windows: {}
+		};
+
+		let pushObject: PushObject = this.push.init(options);
+
+		pushObject.on('registration').subscribe((registration: any) => {
+			console.log('Device registered', registration);
+			this.pushNotificationService.register(registration.registrationId).subscribe(() => { });
+		});
+
+		pushObject.on('notification').subscribe((notification: any) => {
+			let toast = this.toastCtrl.create({
+				message: 'New News was added',
+				duration: 3000
+			});
+			toast.present();
+		});
+
+
+		this.isRegisterToPushNotification = true;
+	}
+
 }

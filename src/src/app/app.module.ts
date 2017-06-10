@@ -34,6 +34,7 @@ import { AccountService } from '../providers/account-services';
 import { PageService } from '../providers/page-services';
 import { ContactService } from '../providers/contact-services';
 import { IssueService } from '../providers/issue-services';
+import { PushNotificationService } from '../providers/push-notification-service';
 
 // Config object
 import { TOKEN_CONFIG, APP_CONFIG } from '../app/app.config';
@@ -90,6 +91,7 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		PageService,
 		ContactService,
 		IssueService,
+		PushNotificationService,
 		{ provide: TOKEN_CONFIG, useValue: APP_CONFIG },
 		{ provide: ErrorHandler, useClass: IonicErrorHandler }
 	]

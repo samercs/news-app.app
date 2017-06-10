@@ -12,8 +12,6 @@ import { IssueModel } from '../../providers/issue-services';
 // Animations
 import { FadeInUp, FadeIn } from '../../utils/animations';
 
-import { ValidationHelper } from '../../utils/validation/validation.helper';
-
 @Component({
 	selector: 'page-issue',
 	templateUrl: 'issue.html',

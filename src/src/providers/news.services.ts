@@ -51,10 +51,10 @@ export class NewsService {
 
     public getNews(): Observable<any> {
 
-        if (this.newsList.isValid()) {
+        /*if (this.newsList.isValid()) {
             console.log('Getting projects from memory...');
             return Observable.of(this.newsList.news);
-        }
+        }*/
 
         console.log('Getting projects from server...');
         let token = '';

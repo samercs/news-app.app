@@ -16,10 +16,10 @@ import { NewsModel } from '../../providers/news.services';
 export class StartPage extends BasePage {
 
 	public news: Array<NewsModel> = [];
-	
+
 	constructor(public injector: Injector) {
 		super(injector);
-	} 
+	}
 
 	ionViewDidLoad() {
 		this.helpers.showLoadingMessage().then(() => {
@@ -27,10 +27,17 @@ export class StartPage extends BasePage {
 				this.news = data;
 				this.helpers.hideLoadingMessage();
 			});
-		});		
-	}	
+		});
+	}
 
-	public newsDetail(news: NewsModel){
-		this.helpers.redirectTo(NewsDetailPage, false, {news: news});
+	public newsDetail(news: NewsModel) {
+		this.helpers.redirectTo(NewsDetailPage, false, { news: news });
+	}
+
+	public doRefresh(refresher) {
+		this.domain.tnewsService.getNews().subscribe((data) => {
+			this.news = data;
+			refresher.complete();
+		});
 	}
 }
