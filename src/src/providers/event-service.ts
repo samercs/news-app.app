@@ -18,4 +18,5 @@ export class EventService {
     // Network related events
     public NetworkIsOnline: string = 'network:isOnline';
     public NetworkIsOffline: string = 'network:isOffline';   
+    public FontChange: string = 'font:changed';   
 }

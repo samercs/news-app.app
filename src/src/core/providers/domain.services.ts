@@ -12,6 +12,7 @@ import { AccountService } from '../../providers/account-services';
 import { PageService } from '../../providers/page-services';
 import { ContactService } from '../../providers/contact-services';
 import { IssueService } from '../../providers/issue-services';
+import { FontService } from '../../providers/font.services';
 
 // Config object
 import { TOKEN_CONFIG, AppConfig } from '../../app/app.config';
@@ -29,6 +30,7 @@ export class DomainServices {
     private _pageService: PageService;
     private _contactService: ContactService;
     private _issueService: IssueService;
+    private _fontService: FontService;
 
     constructor(private _injector: Injector) {}
 
@@ -118,5 +120,13 @@ export class DomainServices {
             this._issueService = this._injector.get(IssueService);
         }
         return this._issueService;
+    }
+
+    // FontService
+    public get fontService(): FontService {
+        if (!this._fontService) {
+            this._fontService = this._injector.get(FontService);
+        }
+        return this._fontService;
     }
 }

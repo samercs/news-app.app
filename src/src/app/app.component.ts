@@ -26,11 +26,12 @@ import { SearchPage } from '../pages/search/search';
 import { ContactPage } from '../pages/contact/contact';
 import { IssuePage } from '../pages/issue/issue';
 import { FavoritePage } from '../pages/favorite/favorite';
+import { SettingsPage } from '../pages/settings/settings';
 
 // Config object
 import { TOKEN_CONFIG, AppConfig } from '../app/app.config';
-
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { FontService } from '../providers/font.services';
 
 @Component({
 	templateUrl: 'app.html',
@@ -43,6 +44,7 @@ export class MyApp {
 	public pages: Array<{ title: string, component: any }>
 	public isUserLogin: boolean = false;
 	public isRegisterToPushNotification: boolean;
+	public fontSize: string = 'font-large';
 
 	constructor(public platform: Platform,
 		private modalCtrl: ModalController,
@@ -56,7 +58,8 @@ export class MyApp {
 		private accountService: AccountService,
 		private pushNotificationService: PushNotificationService,
 		private push: Push,
-		@Inject(TOKEN_CONFIG) config: AppConfig) {
+		@Inject(TOKEN_CONFIG) config: AppConfig,
+		private fontService: FontService) {
 		this.initializeApp();
 
 		this.pages = [
@@ -64,7 +67,8 @@ export class MyApp {
 			{ title: 'عن التطبيق', component: AboutPage },
 			{ title: 'البحث', component: SearchPage },
 			{ title: 'اتصل بنا', component: ContactPage },
-			{ title: 'الابلاغ عن مشكلة', component: IssuePage }
+			{ title: 'الابلاغ عن مشكلة', component: IssuePage },
+			{ title: 'الاعدادات', component: SettingsPage }
 		];
 	}
 
@@ -76,13 +80,19 @@ export class MyApp {
 			this.initializeEvents();
 			this.initializeStartPage();
 			this.registerPushNotification();
-
+			this.initFontSize();
 			// Load both audio files
 			NativeAudio.preloadSimple('success', 'assets/audio/success.mp3')
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
 			NativeAudio.preloadSimple('error', 'assets/audio/error.mp3')
 				.catch((error) => { console.log(`[NativeAudio]:${error}`); });
+		});
+	}
 
+	private initFontSize(){
+		this.fontService.getFontSize().subscribe(font => {
+			this.fontSize = font;
+			console.log(this.fontSize);
 		});
 	}
 
@@ -121,6 +131,10 @@ export class MyApp {
 		// Handle what to do when the user needs to be redirected to any page of the app
 		this.eventCtrl.subscribe(this.eventService.UserLoginStatusChanged, (loginChange) => {
 			this.isUserLogin = loginChange;
+		});
+
+		this.eventCtrl.subscribe(this.eventService.FontChange, (font) => {
+			this.initFontSize();
 		});
 	}
 

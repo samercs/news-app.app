@@ -21,6 +21,8 @@ import { SearchPage } from '../pages/search/search';
 import { ContactPage } from '../pages/contact/contact';
 import { IssuePage } from '../pages/issue/issue';
 import { FavoritePage } from '../pages/favorite/favorite';
+import { SettingsPage } from '../pages/settings/settings';
+
 
 // Services
 import { HttpClientService } from '../providers/http-client-service';
@@ -35,6 +37,7 @@ import { PageService } from '../providers/page-services';
 import { ContactService } from '../providers/contact-services';
 import { IssueService } from '../providers/issue-services';
 import { PushNotificationService } from '../providers/push-notification-service';
+import { FontService } from '../providers/font.services';
 
 // Config object
 import { TOKEN_CONFIG, APP_CONFIG } from '../app/app.config';
@@ -54,6 +57,7 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		ContactPage,
 		IssuePage,
 		FavoritePage,
+		SettingsPage,
 		// Utils
 		CustomDropdown
 	],
@@ -75,6 +79,7 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		ContactPage,
 		IssuePage,
 		FavoritePage,
+		SettingsPage,
 		// Utils
 		CustomDropdown
 	],
@@ -92,6 +97,7 @@ import { CustomDropdown } from '../utils/custom-dropdown/custom-dropdown.compone
 		ContactService,
 		IssueService,
 		PushNotificationService,
+		FontService,
 		{ provide: TOKEN_CONFIG, useValue: APP_CONFIG },
 		{ provide: ErrorHandler, useClass: IonicErrorHandler }
 	]

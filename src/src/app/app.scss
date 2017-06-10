@@ -201,5 +201,26 @@ div.success-message {
     }
 }
 
+.font-large{
+    font-size: 1.2em !important;
+    p,h1,h2,h3,h4,h5,h6{
+        font-size: 1.2em !important;
+    }    
+}
+
+.font-normal{
+    font-size: 1em !important;
+    p,h1,h2,h3,h4,h5,h6{
+        font-size: 1em !important;
+    }    
+}
+
+.font-small{
+    font-size: 0.8em !important;
+    p,h1,h2,h3,h4,h5,h6{
+        font-size: 0.8em !important;
+    }    
+}
+
 @include arabic-styles();
 @import "../theme/app.grids";
