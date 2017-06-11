@@ -6,9 +6,16 @@
 // 04. Custom Arabic styles
 
 /* ------------------------------------ */
+
+
 /* 01 Typography                        */
+
+
 /* ------------------------------------ */
-.label-ios[stacked], .label-md[stacked], .label-wp[stacked] {
+
+.label-ios[stacked],
+.label-md[stacked],
+.label-wp[stacked] {
     font-size: inherit;
     font-weight: 500;
     margin-bottom: 8px;
@@ -16,8 +23,13 @@
 
 
 /* ------------------------------------ */
+
+
 /* 02 Helpers                           */
+
+
 /* ------------------------------------ */
+
 .vertical-center {
     .fixed-content,
     .scroll-content {
@@ -26,10 +38,11 @@
     }
 }
 
-ion-toast.offline .toast-wrapper{
+ion-toast.offline .toast-wrapper {
     background-color: map-get($colors, red);
 }
-ion-toast.online .toast-wrapper{
+
+ion-toast.online .toast-wrapper {
     background-color: map-get($colors, green);
 }
 
@@ -53,68 +66,56 @@ ion-toast.online .toast-wrapper{
 // Inputs with background color
 // ---------------------------------
 @mixin input-with-color-background($color) {
-
     .list-ios,
     .list-md,
     .list-wp {
         margin: 0px !important;
     }
-
-
     ion-item.item-ios.item-block.form-input,
     ion-item.item-md.item-block.form-input,
     ion-item.item-wp.item-block.form-input {
         margin-bottom: 16px;
         padding-left: 0px;
         padding-right: 0px;
-
         .item-inner {
             padding-right: 0;
         }
-
-        .custom-input, .custom-input p {
+        .custom-input,
+        .custom-input p {
             width: 100%;
             line-height: 36px;
             margin: 0;
         }
-
-        ion-input, ion-select, &.item-radio, .custom-input p {
+        ion-input,
+        ion-select,
+        &.item-radio,
+        .custom-input p {
             height: 36px;
             padding-left: 16px;
             padding-right: 16px;
             background-color: map-get($colors, #{$color});
         }
-
-        ion-input, ion-select .select-text {
-            color:map-get($colors, light-text);
+        ion-input,
+        ion-select .select-text {
+            color: map-get($colors, light-text);
         }
-
         // Radio items
         &.item-radio {
             margin-bottom: 4px;
-
             ion-label,
             .radio-md .radio-icon {
-                color:map-get($colors, light-text);
+                color: map-get($colors, light-text);
             }
-
             &.item-radio-checked ion-label {
                 font-weight: 700;
-                color:map-get($colors, primary);
+                color: map-get($colors, primary);
             }
-
         }
-
-
-
     }
-
-
     /* Remove input lines on iOS */
     .list-ios[inset] .item {
         border-bottom: none;
     }
-
     /* Remove input lines on windows phone */
     .text-input-wp {
         border: none;
@@ -126,8 +127,7 @@ ion-toast.online .toast-wrapper{
 @mixin simple-button-container($margin) {
     ion-row.simple-btn-container {
         margin: $margin;
-
-        ion-col {        
+        ion-col {
             padding-left: 0;
             padding-right: 0;
         }
@@ -139,7 +139,6 @@ ion-toast.online .toast-wrapper{
 @mixin double-button-container($margin) {
     ion-row.double-btn-container {
         margin: $margin;
-
         ion-col:nth-child(1) {
             padding-left: 0;
             padding-right: 5px;
@@ -160,8 +159,13 @@ ion-toast.online .toast-wrapper{
     }
 }
 
+
 /* ------------------------------------ */
+
+
 /* 03 Main components                   */
+
+
 /* ------------------------------------ */
 
 form {
@@ -178,17 +182,20 @@ div.success-message {
     margin-top: 5px;
 }
 
+
 /* ------------------------------------ */
+
+
 /* 04 Custom Arabic styles              */
+
+
 /* ------------------------------------ */
 
 @mixin arabic-styles() {
     ion-app.lang-ar {
         direction: rtl;
-
         ion-row.double-btn-container {
             margin-top: 16px;
-
             ion-col:nth-child(1) {
                 padding-left: 5px;
                 padding-right: 0;
@@ -197,29 +204,55 @@ div.success-message {
                 padding-left: 0;
                 padding-right: 5px;
             }
-        } 
+        }
     }
 }
 
-.font-large{
+//font size setting
+.font-large {
     font-size: 1.2em !important;
-    p,h1,h2,h3,h4,h5,h6{
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-size: 1.2em !important;
-    }    
+    }
 }
 
-.font-normal{
+.font-normal {
     font-size: 1em !important;
-    p,h1,h2,h3,h4,h5,h6{
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-size: 1em !important;
-    }    
+    }
 }
 
-.font-small{
+.font-small {
     font-size: 0.8em !important;
-    p,h1,h2,h3,h4,h5,h6{
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-size: 0.8em !important;
-    }    
+    }
+}
+
+//long text warp
+.title {
+    word-wrap: break-word;
+    overflow: initial;
+    white-space: initial;
 }
 
 @include arabic-styles();
