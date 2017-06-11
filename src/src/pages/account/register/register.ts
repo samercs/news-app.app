@@ -54,10 +54,12 @@ export class RegisterPage extends BasePage {
         super(injector);
 
         // Creates the form without data
-        this.createEmptyForm();
+        this.createEmptyForm();   
 
+    }
+
+    ionViewDidEnter() {        
         this.applyPageAnimations();
-
     }
 
     // Method that initializes the form
